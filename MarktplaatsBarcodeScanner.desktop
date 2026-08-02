@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Marktplaats Barcode Scanner
+Comment=Scan een artikelnummer en bekijk direct de productgegevens
+Exec=/home/quit/Documents/MarktplaatsProgramma/MarktplaatsScanner/start_scanner.sh
+Icon=/home/quit/Documents/MarktplaatsProgramma/MarktplaatsScanner/icon.png
+Terminal=false
+StartupNotify=true
+StartupWMClass=marktplaats_barcode_scanner
+Categories=Utility;Office;

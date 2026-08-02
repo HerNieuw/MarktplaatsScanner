@@ -1,0 +1,10 @@
+{
+  "storage": {
+    "backend": "xml",
+    "xml_path": "/home/quit/Documents/MarktplaatsProgramma/MarktplaatsProductmanager/producten.xml"
+  },
+  "sheets": {
+    "sheet_url": "",
+    "credentials_file": "/home/quit/Documents/MarktplaatsProgramma/MarktplaatsScanner/credentials.json"
+  }
+}
