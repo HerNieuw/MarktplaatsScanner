@@ -1,6 +1,8 @@
 # MarktplaatsScanner
 Scanner app om de barcodes gelinkt aan de productmanager te scannen met een USB scanner om productinformatie en verkoopstatus op te halen. Wordt nog uitgebreid met kopersinformatie en smartphone app zodat producten die bij de kassa worden opgehaald geverifieerd kunnen worden in ontvanger en verkoopprijs.
 
+https://github.com/user-attachments/assets/e66169c5-7560-45c6-9af5-c1f1c86d87d5
+
 # MPScanner Android
 
 https://github.com/user-attachments/assets/4e877826-f4dc-4266-af9e-980363b80a28
