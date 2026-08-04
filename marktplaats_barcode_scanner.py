@@ -30,6 +30,8 @@ COLUMNS = [
     "waarde_min", "waarde_max", "vraagprijs", "aanmaakdatum", "tijdsperiode",
     "opslaglocatie", "sublocatie", "rij", "folder_locatie", "verkocht",
     "verkoopprijs", "verkoopdatum", "algemene_voorwaarden", "advertentie_url",
+    "leverwijze", "klant_naam", "klant_telefoon", "klant_email",
+    "ophaal_afspraak", "track_trace",
 ]
 
 TEXTVIEW_CSS = b"""
@@ -38,8 +40,8 @@ textview {
     border-radius: 4px;
 }
 textview text {
-    background-color: @theme_base_color;
-    color: @theme_text_color;
+    background-color: #3a3a3a;
+    color: #e8e8e8;
     padding: 8px;
 }
 """
@@ -509,6 +511,20 @@ class MainWindow(Gtk.Window):
         titel_label.set_line_wrap(True)
         self.result_box.pack_start(titel_label, False, False, 0)
         
+        if verkocht and product.get("leverwijze", "").strip().lower() == "ophalen":
+            verificatie = Gtk.Label()
+            klant = GLib.markup_escape_text(product.get("klant_naam", "") or "(geen naam ingevuld)")
+            prijs = GLib.markup_escape_text(product.get("verkoopprijs", "") or "?")
+            verificatie.set_markup(
+                f"<span background='#2d4a2d' foreground='#a0e0a0' size='large'>"
+                f"  ✅ OPHALEN - controleer: <b>{klant}</b> - €{prijs}  "
+                f"</span>"
+            )
+            verificatie.set_xalign(0)
+            verificatie.set_margin_top(6)
+            verificatie.set_margin_bottom(6)
+            self.result_box.pack_start(verificatie, False, False, 0)
+        
         # Kerngegevens
         grid = Gtk.Grid()
         grid.set_column_spacing(15)
@@ -535,6 +551,15 @@ class MainWindow(Gtk.Window):
         if verkocht:
             velden.append(("Verkoopprijs", f"€{product.get('verkoopprijs', '')}"))
             velden.append(("Verkoopdatum", product.get("verkoopdatum", "")))
+            leverwijze = product.get("leverwijze", "").strip().lower()
+            velden.append(("Leverwijze", "📦 Ophalen" if leverwijze == "ophalen" else "🚚 Verzenden" if leverwijze == "verzenden" else ""))
+            velden.append(("Marktplaatsnaam koper", product.get("klant_naam", "")))
+            if leverwijze == "ophalen":
+                velden.append(("Telefoonnummer", product.get("klant_telefoon", "")))
+                velden.append(("E-mail", product.get("klant_email", "")))
+                velden.append(("Afspraak", product.get("ophaal_afspraak", "")))
+            elif leverwijze == "verzenden":
+                velden.append(("Track & Trace", product.get("track_trace", "")))
         
         for i, (label_tekst, waarde) in enumerate(velden):
             if not waarde:
