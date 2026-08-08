@@ -27,11 +27,12 @@ import datetime
 COLUMNS = [
     "artikelnummer", "titel", "categorie", "omschrijving", "online",
     "lengte", "breedte", "hoogte", "gewicht", "conditie", "staat_details",
-    "waarde_min", "waarde_max", "vraagprijs", "aanmaakdatum", "tijdsperiode",
-    "opslaglocatie", "sublocatie", "rij", "folder_locatie", "verkocht",
-    "verkoopprijs", "verkoopdatum", "algemene_voorwaarden", "advertentie_url",
+    "waarde_min", "waarde_max", "vraagprijs", "aanmaakdatum", "aanmaaktijd",
+    "tijdsperiode", "opslaglocatie", "sublocatie", "rij", "folder_locatie",
+    "verkocht", "verkoopprijs", "verkoopdatum", "algemene_voorwaarden",
+    "url_1", "url_2", "url_3", "url_4", "url_5",
     "leverwijze", "klant_naam", "klant_telefoon", "klant_email",
-    "ophaal_afspraak", "track_trace",
+    "ophaal_afspraak", "track_trace", "verwerkt_door", "toegewezen_aan",
 ]
 
 TEXTVIEW_CSS = b"""
@@ -545,9 +546,14 @@ class MainWindow(Gtk.Window):
             ("Opslaglocatie", " / ".join(x for x in [
                 product.get("opslaglocatie", ""), product.get("sublocatie", ""), product.get("rij", "")
             ] if x)),
+            ("Verwerkt door", product.get("verwerkt_door", "")),
+            ("Toegewezen aan", product.get("toegewezen_aan", "")),
         ]
-        if online and product.get("advertentie_url"):
-            velden.append(("Advertentie-URL", product.get("advertentie_url")))
+        if online:
+            for i in range(1, 6):
+                url = product.get(f"url_{i}", "")
+                if url:
+                    velden.append((f"Advertentie-URL {i}", url))
         if verkocht:
             velden.append(("Verkoopprijs", f"€{product.get('verkoopprijs', '')}"))
             velden.append(("Verkoopdatum", product.get("verkoopdatum", "")))
