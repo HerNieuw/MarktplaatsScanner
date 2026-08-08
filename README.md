@@ -7,6 +7,8 @@ https://github.com/user-attachments/assets/d5e1661d-ea55-4c6c-b441-825336e96cda
 
 https://github.com/user-attachments/assets/4e877826-f4dc-4266-af9e-980363b80a28
 
+Huidige APK: https://kdrive.infomaniak.com/app/share/2309692/a594e0ab-7348-4fe6-a76e-2342ffee404f
+
 Installatie:
 1. Laat Android Studio synchroniseren
 Zodra het project open is, start Android Studio automatisch een Gradle-sync (of klik rechtsboven op het olifantje/🐘-icoon "Sync Project with Gradle Files" als het niet vanzelf gebeurt). Dit kan een paar minuten duren — hij downloadt de juiste Gradle-versie en Android SDK-onderdelen.
